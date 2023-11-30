@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page d'Accueil</title>
+
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: url('back.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    form {
+      position: relative;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 300px;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+
+    input {
+      width: calc(100% - 30px);
+      padding: 10px;
+      margin: 5px 0 15px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      outline: none;
+      display: inline-block;
+    }
+
+    .password-toggle {
+      display: inline-block;
+      width: 20px;
+      height: 10px;
+      padding: 0px;
+      margin-left: -25px;
+      margin-right: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+      user-select: none;
+      font-size: 12px;
+      line-height: 10px;
+      text-align: center;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    /* Style pour la croix d'annulation */
+    .cancel-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <form id="authForm">
+    <div id="buttonSection">
+      <button type="button" onclick="login()">Log in</button>
+      <button type="button" onclick="signup()">Sign up</button>
+    </div>
+
+    <div id="formSection" style="display: none;">
+      <span class="cancel-icon" onclick="cancelForm()">×</span>
+      
+      <div id="loginSection" style="display: none;">
+        <label for="username">Identifiant:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Mot de passe:</label>
+        <div style="position: relative;">
+          <input type="password" id="password" name="password" required>
+          <span class="password-toggle" onclick="togglePassword('password')">👁️</span>
+        </div>
+
+        <button type="button" onclick="performLogin()">Se Connecter</button>
+      </div>
+
+      <div id="signupSection" style="display: none;">
+        <label for="newUsername">Nouvel Identifiant:</label>
+        <input type="text" id="newUsername" name="newUsername" required>
+
+        <label for="newPassword">Nouveau Mot de passe:</label>
+        <div style="position: relative;">
+          <input type="password" id="newPassword" name="newPassword" required>
+          <span class="password-toggle" onclick="togglePassword('newPassword')">👁️</span>
+        </div>
+
+        <button type="button" onclick="performSignup()">S'Inscrire</button>
+      </div>
+    </div>
+
+  <script>
+    function login() {
+      document.getElementById('buttonSection').style.display = 'none';
+      document.getElementById('formSection').style.display = 'block';
+      document.getElementById('loginSection').style.display = 'block';
+    }
+
+    function signup() {
+      document.getElementById('buttonSection').style.display = 'none';
+      document.getElementById('formSection').style.display = 'block';
+      document.getElementById('signupSection').style.display = 'block';
+    }
+
+    function cancelForm() {
+      document.getElementById('buttonSection').style.display = 'block';
+      document.getElementById('formSection').style.display = 'none';
+      document.getElementById('loginSection').style.display = 'none';
+      document.getElementById('signupSection').style.display = 'none';
+    }
+
+    function performLogin() {
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+      // Ajouter le code pour le processus de connexion
+      alert('Processus de connexion à implémenter pour ' + username);
+    }
+
+    function performSignup() {
+      var newUsername = document.getElementById('newUsername').value;
+      var newPassword = document.getElementById('newPassword').value;
+      // Ajouter le code pour le processus d'inscription
+      alert('Processus d\'inscription à implémenter pour ' + newUsername);
+    }
+
+    function togglePassword(inputId) {
+      var passwordInput = document.getElementById(inputId);
+      var passwordToggle = document.querySelector('.' + inputId + '-toggle');
+
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        passwordToggle.innerHTML = '👁️';
+      } else {
+        passwordInput.type = 'password';
+        passwordToggle.innerHTML = '👁️';
+      }
+    }
+
+    function submitForm() {
+      const email = getElementById("")
+    }
+
+  </script>
+</body>
+</html>
