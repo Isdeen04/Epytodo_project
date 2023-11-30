@@ -1,24 +1,21 @@
-CREATE DATABASE IF NOT EXISTS  epytodo;
+CREATE DATABASE IF NOT EXISTS epytodo;
 
 USE epytodo;
 
 CREATE TABLE IF NOT EXISTS user (
-    id INT NOT NULL AUTO_INCREMENT,
-    PRIMARY KEY(id),
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    usejrname VARCHAR(50) NOT NULL,
+    firstname VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
     password VARCHAR(100) NOT NULL,
-    name VARCHAR(100) NOT NULL,
-    firstname VARCHAR(100)NOT NULL,
-    created_at DATETIME NOT NULL
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS todo (
-    id INT NOT NULL AUTO_INCREMENT,
-    PRIMARY KEY(id),
-    title VARCHAR(100) NOT NULL,
-    description TEXT,
-    created_at DATETIME NOT NULL,
-    due_time DATETIME NOT NULL,
-    status ENUM('not started', 'todo', 'in progress', 'done') DEFAULT 'not started',
-    user_id INT UNSIGNED NOT NULL
+    todo_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    task VARCHAR(255) NOT NULL,
+    due_date DATE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
