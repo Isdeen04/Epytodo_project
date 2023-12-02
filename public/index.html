@@ -11,7 +11,7 @@
       margin: 0;
       padding: 0;
       height: 100vh;
-      background: url('back.jpg') center/cover no-repeat;
+      background: url('back2.png') center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -60,7 +60,7 @@
     }
 
     button {
-      background-color: #4caf50;
+      background-color: #808580;
       color: #fff;
       padding: 10px 15px;
       border: none;
@@ -70,10 +70,9 @@
     }
 
     button:hover {
-      background-color: #45a049;
+      background-color: #3f473f;
     }
 
-    /* Style pour la croix d'annulation */
     .cancel-icon {
       position: absolute;
       top: 10px;
@@ -92,7 +91,7 @@
 
     <div id="formSection" style="display: none;">
       <span class="cancel-icon" onclick="cancelForm()">×</span>
-      
+
       <div id="loginSection" style="display: none;">
         <label for="username">Identifiant:</label>
         <input type="text" id="username" name="username" required>
@@ -103,20 +102,26 @@
           <span class="password-toggle" onclick="togglePassword('password')">👁️</span>
         </div>
 
-        <button type="button" onclick="performLogin()">Se Connecter</button>
+        <button type="button" onclick="submitLoginForm()">Se Connecter</button>
       </div>
 
       <div id="signupSection" style="display: none;">
-        <label for="newUsername">Nouvel Identifiant:</label>
+        <label for="newUsername">Name:</label>
         <input type="text" id="newUsername" name="newUsername" required>
 
-        <label for="newPassword">Nouveau Mot de passe:</label>
+        <label for="firstname">Firstname:</label>
+        <input type="text" id="firstname" name="firstname" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="newPassword">Password:</label>
         <div style="position: relative;">
           <input type="password" id="newPassword" name="newPassword" required>
           <span class="password-toggle" onclick="togglePassword('newPassword')">👁️</span>
         </div>
 
-        <button type="button" onclick="performSignup()">S'Inscrire</button>
+        <button type="button" onclick="submitSignupForm()">S'Inscrire</button>
       </div>
     </div>
 
@@ -125,11 +130,13 @@
       document.getElementById('buttonSection').style.display = 'none';
       document.getElementById('formSection').style.display = 'block';
       document.getElementById('loginSection').style.display = 'block';
+      document.getElementById('signupSection').style.display = 'none';
     }
 
     function signup() {
       document.getElementById('buttonSection').style.display = 'none';
       document.getElementById('formSection').style.display = 'block';
+      document.getElementById('loginSection').style.display = 'none';
       document.getElementById('signupSection').style.display = 'block';
     }
 
@@ -138,20 +145,6 @@
       document.getElementById('formSection').style.display = 'none';
       document.getElementById('loginSection').style.display = 'none';
       document.getElementById('signupSection').style.display = 'none';
-    }
-
-    function performLogin() {
-      var username = document.getElementById('username').value;
-      var password = document.getElementById('password').value;
-      // Ajouter le code pour le processus de connexion
-      alert('Processus de connexion à implémenter pour ' + username);
-    }
-
-    function performSignup() {
-      var newUsername = document.getElementById('newUsername').value;
-      var newPassword = document.getElementById('newPassword').value;
-      // Ajouter le code pour le processus d'inscription
-      alert('Processus d\'inscription à implémenter pour ' + newUsername);
     }
 
     function togglePassword(inputId) {
@@ -167,10 +160,65 @@
       }
     }
 
-    function submitForm() {
-      const email = getElementById("")
+    function submitLoginForm() {
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+
+      fetch('/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          handleLoginSuccess();
+        } else {
+          alert('Échec de la connexion. Vérifiez vos informations d\'identification.');
+        }
+      })
+      .catch(error => {
+        console.error('Erreur:', error);
+      });
     }
 
+    function submitSignupForm() {
+      var newUsername = document.getElementById('newUsername').value;
+      var firstname = document.getElementById('firstname').value;
+      var password = document.getElementById('newPassword').value;
+      var email = document.getElementById('email').value;
+
+      fetch('/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, newUsername, firstname, password })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          handleSignupSuccess();
+        } else {
+          alert('Échec de l\'inscription. Vérifiez vos informations d\'inscription.');
+        }
+      })
+      .catch(error => {
+        console.error('Erreur:', error);
+      });
+    }
+
+    function handleLoginSuccess() {
+      alert('Connexion réussie');
+      window.location.href = 'todolist.html';
+    }
+
+    function handleSignupSuccess() {
+      alert('Inscription réussie');
+      window.location.href = 'todolist.html';
+    }
   </script>
 </body>
 </html>
