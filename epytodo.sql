@@ -4,7 +4,7 @@ USE epytodo;
 
 CREATE TABLE IF NOT EXISTS user (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
-    usejrname VARCHAR(50) NOT NULL,
+    username VARCHAR(50) NOT NULL,
     firstname VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
     password VARCHAR(100) NOT NULL,
@@ -19,3 +19,4 @@ CREATE TABLE IF NOT EXISTS todo (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
+    
