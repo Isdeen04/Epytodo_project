@@ -28,6 +28,11 @@ Here is the architecture I set up for the project :
 
 
 
+
+
+
+
+
 We also made a SQL script to create the database quickly :
 
 <picture>
@@ -38,4 +43,5 @@ We also made a SQL script to create the database quickly :
 Maintainers 😎
 
 Isdeen04
+
 Jordantek
