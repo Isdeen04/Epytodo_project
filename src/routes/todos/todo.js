@@ -42,3 +42,17 @@ router.post('/todos', async (req, res) => {
     res.status(500).json({ msg: 'Internal Server Error' });
   }
 });
+
+router.put('/todos/:id', async (req, res) => {
+  const todoId = req.params.id;
+  const { title, description, due_time, status } = req.body;
+  try {
+    const updatedTodo = await updateTodo(todoId, title, description, due_time, status);
+    if (!updatedTodo) {
+      return res.status(404).json({ msg: 'Not found' });
+    }
+    res.status(200).json(updatedTodo);
+  } catch (error) {
+    res.status(500).json({ msg: 'Internal Server Error' });
+  }
+});
