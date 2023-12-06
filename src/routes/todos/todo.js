@@ -56,3 +56,18 @@ router.put('/todos/:id', async (req, res) => {
     res.status(500).json({ msg: 'Internal Server Error' });
   }
 });
+
+router.delete('/todos/:id', async (req, res) => {
+  const todoId = req.params.id;
+  try {
+    const deletedTodo = await deleteTodo(todoId);
+    if (!deletedTodo) {
+      return res.status(404).json({ msg: 'Not found' });
+    }
+    res.status(200).json({ msg: `Successfully deleted record number: ${todoId}` });
+  } catch (error) {
+    res.status(500).json({ msg: 'Internal Server Error' });
+  }
+});
+
+module.exports = router;
