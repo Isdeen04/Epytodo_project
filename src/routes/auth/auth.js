@@ -47,3 +47,13 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ msg: 'Internal Server Error' });
   }
 });
+
+router.get('/user', verifyToken, async (req, res) => {
+  try {
+    res.status(200).json({ user: req.user });
+  } catch (err) {
+    res.status(500).json({ msg: 'Internal Server Error' });
+  }
+});
+
+module.exports = router;
