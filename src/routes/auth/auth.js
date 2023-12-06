@@ -25,3 +25,25 @@ router.post('/register', async (req, res) => {
     res.status(500).json({ msg: 'Internal Server Error' });
   }
 });
+
+router.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await getUserByEmail(email);
+    if (!user) {
+      return res.status(400).json({ msg: 'Invalid Credentials' });
+    }
+
+    const passwordMatch = await comparePasswords(password, user.password);
+    if (!passwordMatch) {
+      return res.status(400).json({ msg: 'Invalid Credentials' });
+    }
+
+    const token = jwt.sign({ id: user.id }, process.env.SECRET, { expiresIn: '1h' });
+
+    res.status(200).json({ token });
+  } catch (err) {
+    res.status(500).json({ msg: 'Internal Server Error' });
+  }
+});
