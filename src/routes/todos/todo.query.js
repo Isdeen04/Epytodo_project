@@ -26,3 +26,20 @@ async function updateTodo(todoId, title, description, due_time, status) {
   }
   return null;
 }
+
+async function deleteTodo(todoId) {
+  const query = 'DELETE FROM todo WHERE id = ?';
+  const [result] = await db.query(query, [todoId]);
+  if (result.affectedRows > 0) {
+    return { id: todoId };
+  }
+  return null;
+}
+
+module.exports = {
+  getAllTodos,
+  getTodoById,
+  createTodo,
+  updateTodo,
+  deleteTodo
+};
