@@ -117,3 +117,13 @@ router.get('/todos/:id', verifyToken, async (req, res) => {
     res.status(500).json({ msg: 'Internal Server Error' });
   }
 });
+
+router.post('/todos', verifyToken, async (req, res) => {
+  const { title, description, due_time, status } = req.body;
+  try {
+    const newTodo = await createTodoForUser(title, description, due_time, status, req.user.id);
+    res.status(201).json(newTodo);
+  } catch (err) {
+    res.status(500).json({ msg: 'Internal Server Error' });
+  }
+});
