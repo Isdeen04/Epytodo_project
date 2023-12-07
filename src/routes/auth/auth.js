@@ -82,3 +82,16 @@ router.put('/users/:id', verifyToken, async (req, res) => {
     res.status(500).json({ msg: 'Internal Server Error' });
   }
 });
+
+router.delete('/users/:id', verifyToken, async (req, res) => {
+  const userId = req.params.id;
+  try {
+    const deletedUser = await deleteUserById(userId);
+    if (!deletedUser) {
+      return res.status(404).json({ msg: 'User not found' });
+    }
+    res.status(200).json({ msg: `Successfully deleted user with ID: ${userId}` });
+  } catch (err) {
+    res.status(500).json({ msg: 'Internal Server Error' });
+  }
+});
