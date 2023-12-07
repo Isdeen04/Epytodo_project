@@ -17,3 +17,12 @@ async function createTodo(title, description, due_time, status, userId) {
   const [result] = await db.query(query, [title, description, due_time, status, userId]);
   return { id: result.insertId, title, description, due_time, status, user_id: userId };
 }
+
+async function updateTodo(todoId, title, description, due_time, status) {
+  const query = 'UPDATE todo SET title = ?, description = ?, due_time = ?, status = ? WHERE id = ?';
+  const [result] = await db.query(query, [title, description, due_time, status, todoId]);
+  if (result.affectedRows > 0) {
+    return { id: todoId, title, description, due_time, status };
+  }
+  return null;
+}
