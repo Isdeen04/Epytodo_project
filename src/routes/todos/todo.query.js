@@ -11,3 +11,9 @@ async function getTodoById(todoId) {
   const [todo] = await db.query(query, [todoId]);
   return todo[0];
 }
+
+async function createTodo(title, description, due_time, status, userId) {
+  const query = 'INSERT INTO todo (title, description, due_time, status, user_id) VALUES (?, ?, ?, ?, ?)';
+  const [result] = await db.query(query, [title, description, due_time, status, userId]);
+  return { id: result.insertId, title, description, due_time, status, user_id: userId };
+}
