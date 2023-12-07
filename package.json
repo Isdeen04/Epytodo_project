@@ -1,13 +1,13 @@
 {
-  "name": "nom-de-ton-projet",
+  "name": "epytodo",
   "version": "1.0.0",
-  "description": "Description de ton projet",
+  "description": "To do list Project",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node index"
   },
   "keywords": [],
-  "author": "Ton nom",
+  "author": "Jordan",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.1",
