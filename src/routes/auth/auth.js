@@ -56,4 +56,29 @@ router.get('/user', verifyToken, async (req, res) => {
   }
 });
 
-module.exports = router;
+router.get('/users/:id', verifyToken, async (req, res) => {
+  const userId = req.params.id;
+  try {
+    const user = await getUserById(userId);
+    if (!user) {
+      return res.status(404).json({ msg: 'User not found' });
+    }
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(500).json({ msg: 'Internal Server Error' });
+  }
+});
+
+router.put('/users/:id', verifyToken, async (req, res) => {
+  const userId = req.params.id;
+  const { email, password, name, firstname } = req.body;
+  try {
+    const updatedUser = await updateUserById(userId, email, password, name, firstname);
+    if (!updatedUser) {
+      return res.status(404).json({ msg: 'User not found' });
+    }
+    res.status(200).json(updatedUser);
+  } catch (err) {
+    res.status(500).json({ msg: 'Internal Server Error' });
+  }
+});
