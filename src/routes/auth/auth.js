@@ -104,3 +104,16 @@ router.get('/todos', verifyToken, async (req, res) => {
     res.status(500).json({ msg: 'Internal Server Error' });
   }
 });
+
+router.get('/todos/:id', verifyToken, async (req, res) => {
+  const todoId = req.params.id;
+  try {
+    const todo = await getTodoByIdForUser(todoId, req.user.id);
+    if (!todo) {
+      return res.status(404).json({ msg: 'Todo not found' });
+    }
+    res.status(200).json(todo);
+  } catch (err) {
+    res.status(500).json({ msg: 'Internal Server Error' });
+  }
+});
