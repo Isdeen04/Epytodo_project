@@ -95,3 +95,12 @@ router.delete('/users/:id', verifyToken, async (req, res) => {
     res.status(500).json({ msg: 'Internal Server Error' });
   }
 });
+
+router.get('/todos', verifyToken, async (req, res) => {
+  try {
+    const todos = await getAllTodosForUser(req.user.id);
+    res.status(200).json(todos);
+  } catch (err) {
+    res.status(500).json({ msg: 'Internal Server Error' });
+  }
+});
