@@ -141,3 +141,18 @@ router.put('/todos/:id', verifyToken, async (req, res) => {
     res.status(500).json({ msg: 'Internal Server Error' });
   }
 });
+
+router.delete('/todos/:id', verifyToken, async (req, res) => {
+  const todoId = req.params.id;
+  try {
+    const deletedTodo = await deleteTodoForUser(todoId, req.user.id);
+    if (!deletedTodo) {
+      return res.status(404).json({ msg: 'Todo not found' });
+    }
+    res.status(200).json({ msg: `Successfully deleted todo with ID: ${todoId}` });
+  } catch (err) {
+    res.status(500).json({ msg: 'Internal Server Error' });
+  }
+});
+
+module.exports = router;
