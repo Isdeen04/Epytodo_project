@@ -20,7 +20,7 @@ Here is the architecture I set up for the project :
 
 
 <picture>
-  <img alt="Shows an illustrated sun in light mode and a moon with stars in dark mode."archi.png">
+  <img alt="Shows an illustrated sun in light mode and a moon with stars in dark mode."src = "archi.png">
 </picture>
 
 
@@ -29,7 +29,7 @@ We also made a SQL script to create the database quickly :
 
 
 <picture>
-  <img alt="Shows an illustrated sun in light mode and a moon with stars in dark mode."sql.png">
+  <img alt="Shows an illustrated sun in light mode and a moon with stars in dark mode."src = "sql.png">
 </picture>
 
 
