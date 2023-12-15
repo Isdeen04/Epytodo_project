@@ -1,4 +1,4 @@
-const express = require('express');
+  const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -35,10 +35,10 @@ router.post('/register', (req, res) => {
     db.query(query, [name, firstname, email, hash], (err, result) => {
       if (err) {
         console.error('Erreur lors de l\'insertion des données :', err);
-        return res.status(500).json({ msg: 'Erreur lors de l\'enregistrement des données : ' + err.message });
+        return res.status(500).json({ msg: 'Cet utilisateur existe déjà' + err.message });
       }
 
-      console.error('Inscription réussie');
+      console.log('Inscription réussie');
       const user = { id: result.insertId, email: email };
       const token = generateTokenForUser(user);
       return res.status(200).json({token: token });
@@ -57,8 +57,8 @@ router.post('/login', (req, res) => {
   
   db.query(query, [email], (err, results) => {
     if (err) {
-      console.error('Erreur lors de la recherche de l\'utilisateur :', err);
-      return res.status(500).json({ msg: 'Erreur lors de la recherche de l\'utilisateur' });
+      console.error('Utilisateur introuvable :', err);
+      return res.status(500).json({ msg: 'Utilisateur introuvable' });
     }
 
     if (results.length === 0) {
@@ -69,12 +69,12 @@ router.post('/login', (req, res) => {
 
     bcrypt.compare(password, user.password, (err, match) => {
       if (err) {
-        console.error('Erreur lors de la comparaison des mots de passe :', err);
-        return res.status(500).json({ msg: 'Erreur lors de la comparaison des mots de passe' });
+        console.error('Utilisateur non trouvé :', err);
+        return res.status(500).json({ msg: 'Utilisateur non trouvé' });
       } else if (!match) {
         return res.status(401).json({ msg: 'Identifiants invalides' });
       } else {
-        console.error('Connexion réussie');
+        console.log('Connexion réussie');
         const token = generateTokenForUser(user);
         return res.status(200).json({token: token });
       }

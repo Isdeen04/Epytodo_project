@@ -1,0 +1,111 @@
+/* src/components/Auth.css */
+.auth-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  background: url('back2.png') center/cover no-repeat;
+  transition: background-color 0.3s ease;
+}
+
+.auth-container:hover {
+  background: url('back2.png') center/cover no-repeat;
+  filter: brightness(90%);
+}
+
+.auth-form {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.auth-form:hover {
+  transform: scale(1.02);
+}
+
+.cancel-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+input {
+  width: calc(100% - 30px);
+  padding: 10px;
+  margin: 5px 0 15px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  display: inline-block;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #3f473f;
+}
+
+.password-toggle {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  padding: 0px;
+  margin-left: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+}
+
+button {
+  background-color: #808580;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background-color: #3f473f;
+  transform: scale(1.05);
+}
+
+.auth-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  width: 12%;
+}
+
+.error-message,
+.success-message {
+  color: #fff;
+  background-color: #d10000;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.success-message {
+  background-color: #008000;
+}

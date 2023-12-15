@@ -1,0 +1,170 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: url('back4.png') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  form {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    margin-bottom: 20px;
+    animation: appear 0.5s ease-in-out;
+  }
+  
+  form div {
+    display: flex;
+    align-items: flex-start; /* Ajusté l'alignement des éléments à partir du haut */
+  }
+  
+  label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+  }
+  
+  input {
+    width: calc(100% - 50px);
+    padding: 10px;
+    margin: 5px 0 15px;
+    box-sizing: border-box;
+    border: 1px solid #eae3e3;
+    background-color: rgba(222, 208, 208, 0.9);
+    border-radius: 20px;
+    outline: none;
+    display: inline-block;
+    transition: border-color 0.3s;  
+  }
+  
+  input:focus {
+    border-color: #c62828;
+  }
+  
+  button[type="submit"] {
+    background-color: #c62828;
+    color: #fff;
+    padding: 12px 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 100px;
+    height: 1cm;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #8e0000;
+  }
+  
+  /* Ajout de styles pour les tâches */
+  #taskList {
+    list-style-type: none;
+    padding: 0;
+    max-width: 300px; /* Limite la largeur des tâches */
+    width: 100%; /* Occupe toute la largeur du conteneur */
+  }
+  
+  li {
+    background-color: #ffffff;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  li button {
+    background-color: #d31d1d;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  li button.deleteButton {
+    margin-left: 5px; /* Ajusté la marge à gauche */
+  }
+  
+  li button:hover {
+    background-color: #ac0430;
+  }
+  
+  li.completed {
+    background-color: #b71c1c;
+    text-decoration: line-through;
+    color: #fff;
+  }
+  
+  .logout {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgb(125, 12, 12);
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .logout:hover {
+    background-color: #8e3838;
+  }
+  
+  #confirmAllButton, #deleteAllButton {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  #confirmAllButton:hover, #deleteAllButton:hover {
+    background-color: #45a049;
+  }
+  
+  .snowflake {
+    position: fixed;
+    color: #fff;
+    font-size: 20px;
+    z-index: 100;
+    pointer-events: none;
+    animation: fall linear infinite;
+  }
+  
+  @keyframes fall {
+    0% {
+      transform: translateY(-100vh);
+    }
+    100% {
+      transform: translateY(100vh);
+    }
+  }
+  
+  @keyframes appear {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
